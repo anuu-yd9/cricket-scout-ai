@@ -50,7 +50,7 @@ def build_dataset(seasons: pd.DataFrame) -> pd.DataFrame:
     df = df.rename(columns={"rel_sr": TARGET})
     df = df.dropna(subset=["prev_rel_sr"])            # first-ever seasons have no history
 
-    return df[["player", "year", "league_sr", *FEATURES, TARGET]].reset_index(drop=True)
+    return df[["player", "year", "league_sr", "balls_faced", *FEATURES, TARGET]].reset_index(drop=True)
 
 
 def split_by_time(df: pd.DataFrame):
