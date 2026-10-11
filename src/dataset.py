@@ -13,7 +13,8 @@ TRAIN_END_YEAR = 2023   # train on <= 2023, test on later seasons
 FEATURES = [
     "prev_rel_sr", "prev_boundary_pct", "prev_dot_pct",
     "prev_balls_faced", "prev_matches",
-    "career_rel_sr", "seasons_before", "years_since_prev",
+    "career_rel_sr", "career_balls", "shrunk_rel_sr",
+    "seasons_before", "years_since_prev",
 ]
 TARGET = "target_rel_sr"
 
@@ -42,6 +43,9 @@ def build_dataset(seasons: pd.DataFrame) -> pd.DataFrame:
     cum_w = g["_w"].cumsum() - df["_w"]               # subtract the current season
     cum_b = g["balls_faced"].cumsum() - df["balls_faced"]
     df["career_rel_sr"] = cum_w / cum_b.replace(0, np.nan)
+    df["career_balls"] = cum_b
+    K = 300  # "prior strength": acts like 300 league-average balls added to everyone
+    df["shrunk_rel_sr"] = (cum_w + K * 1.0) / (cum_b + K)
 
     df = df.rename(columns={"rel_sr": TARGET})
     df = df.dropna(subset=["prev_rel_sr"])            # first-ever seasons have no history
