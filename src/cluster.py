@@ -55,6 +55,14 @@ for k in range(3, 8):
     print(f"  k={k}: silhouette = {silhouette_score(X, labels):.3f}")
 
 p["cluster"] = KMeans(n_clusters=K, n_init=10, random_state=42).fit_predict(X)
+STYLE_NAMES = {
+    3: "Aggressive powerplay hitter",
+    2: "Power finisher",
+    4: "Anchor",
+    0: "Traditional opener",
+    1: "Middle-order accelerator",
+}
+p["style"] = p["cluster"].map(STYLE_NAMES)
 
 # 2D map for the dashboard
 coords = PCA(n_components=2, random_state=42).fit_transform(X)
