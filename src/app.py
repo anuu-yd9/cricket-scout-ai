@@ -644,4 +644,4 @@ with tab_how:
 <div class="chips" style="margin-top:.8rem"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Plotly</span><span>Streamlit</span></div>
 """)
 
-H(f'<div class="foot">Built by <b>Anoushka Yadav</b> · <a href="{GITHUB}" target="_blank" rel="noopener">github.com/anuu-yd9/cricket-scout-ai</a><br>Ball-by-ball data from Cricsheet. Independent analysis, not affiliated with the IPL.</div>')
+H(f'<div class="foot">Built by <b>Group 22</b> · <a href="{GITHUB}" target="_blank" rel="noopener">github.com/anuu-yd9/cricket-scout-ai</a><br>Ball-by-ball data from Cricsheet. Independent analysis, not affiliated with the IPL.</div>')
